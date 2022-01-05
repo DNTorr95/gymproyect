@@ -32,8 +32,8 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get('/', function () {
-    return view('menu');
-})->name('menu');
+    return view('login');
+})->name('login');
 
 
 Route::get('/login', [AdministradorController::class, 'loginView'])->name('login.view')->middleware('guest:admin');
