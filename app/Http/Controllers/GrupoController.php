@@ -35,8 +35,9 @@ class GrupoController extends Controller
         return redirect()->route('grupos.index');
     }
 
-    public function edit($id)
+    public function edit($id) 
     {
+        
         $grupo = Grupo::findOrFail($id);
         $instructores = Instructor::all();
         $instructores->load('persona');
