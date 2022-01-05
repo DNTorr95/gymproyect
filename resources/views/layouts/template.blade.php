@@ -237,7 +237,7 @@
                                     @yield('usuario')
                                 </span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{asset('/adminTemplate/img/undraw_profile.svg')}}">
+                                    src="{{secure_asset('/adminTemplate/img/undraw_profile.svg')}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -314,28 +314,28 @@
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('/adminTemplate/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('/adminTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{secure_asset('/adminTemplate/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{secure_asset('/adminTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{asset('/adminTemplate/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{secure_asset('/adminTemplate/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{asset('/adminTemplate/js/sb-admin-2.min.js')}}"></script>
+    <script src="{{secure_asset('/adminTemplate/js/sb-admin-2.min.js')}}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{asset('/adminTemplate/vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{secure_asset('/adminTemplate/vendor/chart.js/Chart.min.js')}}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{asset('/adminTemplate/js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('/adminTemplate/js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{secure_asset('/adminTemplate/js/demo/chart-area-demo.js')}}"></script>
+    <script src="{{secure_asset('/adminTemplate/js/demo/chart-pie-demo.js')}}"></script>
     
     <!-- Page level plugins -->
-    <script src="{{asset('/adminTemplate/vendor/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('/adminTemplate/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{secure_asset('/adminTemplate/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{secure_asset('/adminTemplate/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{asset('/adminTemplate/js/demo/datatables-demo.js')}}"></script>
+    <script src="{{secure_asset('/adminTemplate/js/demo/datatables-demo.js')}}"></script>
 
 </body>
 
