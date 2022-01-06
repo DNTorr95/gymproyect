@@ -52,11 +52,12 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @php $i = 0 @endphp
+                                       {{--  @php $i = 0 @endphp --}}
                                         @foreach ($personas as $persona)
+                                        @if($persona->tipo == 'A')
                                         <tr>                                           
-                                            <td>{{$persona->administrador->id}}</td>
-                                            <td>{{$persona->administrador->usuario}}</td>
+                                            <td>{{$persona->id}}</td>
+                                            <td>{{$persona->usuario}}</td>
                                             <td>{{$persona->ci}}</td>
                                             <td>{{$persona->nombre}}</td>
                                             <td>{{$persona->apellido}}</td>
@@ -87,8 +88,9 @@
                                                     <input type="submit" value="Eliminar"  class="btn btn-danger btn-icon-split">
                                                 </form>                                         
                                             </td>
-                                            @php $i++ @endphp
+                                           {{--  @php $i++ @endphp --}}
                                         </tr>
+                                        @endif
                                         @endforeach
                                     </tbody>
                                 </table>
