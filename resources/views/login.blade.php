@@ -65,6 +65,7 @@
                                         </div>
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="Iniciar sesion">
                                         <hr>  
+                                        @csrf
                                     </form>
                                     <hr>
                                 </div>
