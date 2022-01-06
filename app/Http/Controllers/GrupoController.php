@@ -13,21 +13,21 @@ class GrupoController extends Controller
 
     public function index()
     {
-        $grupos = Grupo::all();
+        $grupos = grupo::all();
         return view('gestionar_grupo.index', compact('grupos'));
     }
 
     public function create()
     {
-        $instructores = Instructor::all();
+        $instructores = instructor::all();
         $instructores->load('persona');
-        $disciplinas = Disciplina::all();
+        $disciplinas = disciplina::all();
         return view('gestionar_grupo.create', compact('instructores', 'disciplinas'));
     }
 
     public function store(StoregrupoRequest $request)
     {
-        $grupo = new Grupo($request->all());
+        $grupo = new grupo($request->all());
         $grupo->disciplina_id = $request->disciplina_id;
         $grupo->instructor_id = $request->instructor_id;
         $grupo->save();
@@ -38,16 +38,16 @@ class GrupoController extends Controller
     public function edit($id) 
     {
         
-        $grupo = Grupo::findOrFail($id);
-        $instructores = Instructor::all();
+        $grupo = grupo::findOrFail($id);
+        $instructores = instructor::all();
         $instructores->load('persona');
-        $disciplinas = Disciplina::all();
+        $disciplinas = disciplina::all();
         return view('gestionar_grupo.edit', compact('instructores', 'disciplinas', 'grupo'));
     }
 
     public function update(UpdategrupoRequest $request, $id)
     {
-        $grupo = Grupo::findOrFail($id);
+        $grupo = grupo::findOrFail($id);
         $grupo->update($request->all());
         $grupo->instructor_id = $request->instructor_id;
         $grupo->disciplina_id = $request->disciplina_id;
@@ -57,7 +57,7 @@ class GrupoController extends Controller
 
     public function destroy($id)
     {
-        $grupo = Grupo::findOrFail($id);
+        $grupo = grupo::findOrFail($id);
         $grupo->delete();
         return redirect()->route('grupos.index');
     }

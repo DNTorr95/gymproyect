@@ -16,7 +16,7 @@ class AdministradorController extends Controller
 
   public function index()
   {
-    $personas  = Persona::where('tipo', 'A')->get();
+    $personas  = persona::where('tipo', 'A')->get();
     $personas->load('administrador');
     return view('gestionar_administrador.index', compact('personas'));
   }
@@ -52,36 +52,36 @@ class AdministradorController extends Controller
 
   public function edit($persona_id)
   {
-    $persona = Persona::findOrFail($persona_id);
+    $persona = persona::findOrFail($persona_id);
     $persona->load('administrador');
     return view('gestionar_administrador.edit', ['persona' => $persona]);
   }
 
   public function update(UpdateadministradorRequest $request, $persona_id)
   {
-    $administrador_usuario = Administrador::where('usuario', $request->usuario)
+    $administrador_usuario = administrador::where('usuario', $request->usuario)
       ->where('persona_id', '!=', $persona_id)->first();
     if (!is_null($administrador_usuario)) {
       return back()->withErrors(['Usuario ya esta registrado, intente con otro']);
     }
 
-    $persona_ci = Persona::where('ci', $request->ci)
+    $persona_ci = persona::where('ci', $request->ci)
       ->where('id', '!=', $persona_id)->first();
     if (!is_null($persona_ci)) {
       return back()->withErrors(['Ci ya esta registrado, intente con otro']);
     }
-    $persona_huella = Persona::where('url_huella', $request->url_huella)
+    $persona_huella = persona::where('url_huella', $request->url_huella)
       ->where('id', '!=', $persona_id)->first();
     if (!is_null($persona_huella) && !is_null($request->url_huella)) {
       return back()->withErrors(['Huella ya esta registrado, intente con otro']);
     }
-    $persona_email = Persona::where('email', $request->email)
+    $persona_email = persona::where('email', $request->email)
       ->where('id', '!=', $persona_id)->first();
     if (!is_null($persona_email)) {
       return back()->withErrors(['Email ya esta registrado, intente con otro']);
     }
     //actualiza la infomarcion y redirecciona
-    $persona = Persona::findOrFail($persona_id);
+    $persona = persona::findOrFail($persona_id);
     $personaAux = $request->only([
       'ci', 'nombre', 'apellido', 'url_huella', 'tel', 'email',
       'fecha_naci',
@@ -93,7 +93,7 @@ class AdministradorController extends Controller
       $persona->foto = $url;
       $persona->save();
     }
-    $administrador = Administrador::where('persona_id', $persona_id)->first();
+    $administrador = administrador::where('persona_id', $persona_id)->first();
     $administrador->usuario = $request->usuario;
     $administrador->password = bcrypt($request->input('password'));
     $administrador->save();

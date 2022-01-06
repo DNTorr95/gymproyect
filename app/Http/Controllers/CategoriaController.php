@@ -10,7 +10,7 @@ class CategoriaController extends Controller
 {
     public function index()
     {
-        $categorias = Categoria::all();
+        $categorias = categoria::all();
         return view('gestionar_categoria.index', compact('categorias'));
     }
 
@@ -21,27 +21,27 @@ class CategoriaController extends Controller
 
     public function store(StorecategoriaRequest $request)
     {
-        $categoria = new Categoria($request->all());
+        $categoria = new categoria($request->all());
         $categoria->save();
         return redirect()->route('categorias.index');
     }
 
     public function edit($id)
     {
-        $categoria = Categoria::findOrFail($id);
+        $categoria = categoria::findOrFail($id);
         return view('gestionar_categoria.edit', compact('categoria'));
     }
 
     public function update(UpdatecategoriaRequest $request, $id)
     {
-        $categoria = Categoria::findOrFail($id);
+        $categoria = categoria::findOrFail($id);
         $categoria->update($request->all());
         return redirect()->route('categorias.index');
     }
 
     public function destroy($id)
     {
-        $categoria = Categoria::findOrFail($id);
+        $categoria = categoria::findOrFail($id);
         $categoria->delete();
         return redirect()->route('categorias.index');
     }

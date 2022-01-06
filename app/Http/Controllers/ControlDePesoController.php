@@ -15,14 +15,14 @@ class ControlDePesoController extends Controller
     
     public function create($cliente_id) 
     {
-        $cliente = Cliente::findOrFail($cliente_id);
-        $persona = Persona::where('id', $cliente->persona_id)->first();
+        $cliente = cliente::findOrFail($cliente_id);
+        $persona = persona::where('id', $cliente->persona_id)->first();
         return view('gestionar_peso.create', compact('cliente', 'persona'));
     }
 
     public function store(Storecontrol_de_pesoRequest $request, $cliente_id) 
     {
-        $cliente = Cliente::where('id', $cliente_id)->first();
+        $cliente = cliente::where('id', $cliente_id)->first();
         if (is_null($cliente)) {
             return back()->withErrors(['Id del cliente no existe']);
         } 
@@ -34,7 +34,7 @@ class ControlDePesoController extends Controller
         $p->fecha = $now->format('Y-m-d');
         $p->cliente_id = $cliente->id;
         $p->save();
-        $persona  = Persona::where('id', $cliente->persona_id)->first();
+        $persona  = persona::where('id', $cliente->persona_id)->first();
 
         return redirect()->route('personas.clientes.show', $persona->id);
     }
@@ -42,7 +42,7 @@ class ControlDePesoController extends Controller
     public function edit($id, $persona_id) 
     {
         $peso = control_de_peso::findOrFail($id);
-        $persona = Persona::where('id', $persona_id)->first();
+        $persona = persona::where('id', $persona_id)->first();
         return view('gestionar_peso.edit', compact('peso', 'persona'));
     }
 

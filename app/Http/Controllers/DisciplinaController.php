@@ -12,21 +12,21 @@ class DisciplinaController extends Controller
 {
     public function index()
     {
-        $disciplinas = Disciplina::all();
+        $disciplinas = disciplina::all();
        return view('gestionar_disciplina.index', compact('disciplinas'));
     }
 
     public function create()
     {
-        $areas = Area::all();
-        $paquetes = Paquete::all();
+        $areas = area::all();
+        $paquetes = paquete::all();
         return view('gestionar_disciplina.create', compact('areas', 'paquetes'));
     }
 
     public function store(StoredisciplinaRequest $request)
     {
         //$request->validated();
-        $disciplina = new Disciplina($request->validated()); 
+        $disciplina = new disciplina($request->validated()); 
         $disciplina->area_id = $request->area_id;
         $disciplina->paquete_id = $request->paquete_id;
         $disciplina->save();
@@ -37,14 +37,14 @@ class DisciplinaController extends Controller
     public function edit($id)
     {
         $disciplina = disciplina::findOrFail($id);
-        $areas = Area::all();
-        $paquetes = Paquete::all();
+        $areas = area::all();
+        $paquetes = paquete::all();
         return view('gestionar_disciplina.edit', compact('disciplina', 'areas', 'paquetes'));
     }
 
     public function update(UpdatedisciplinaRequest $request, $id)
     {
-        $disciplina = Disciplina::findOrFail($id);
+        $disciplina = disciplina::findOrFail($id);
         $disciplina->update($request->all());
         $disciplina->area_id = $request->area_id;
         $disciplina->paquete_id = $request->paquete_id;
@@ -54,7 +54,7 @@ class DisciplinaController extends Controller
 
     public function destroy($id)
     {
-        $disciplina = Disciplina::findOrFail($id);
+        $disciplina = disciplina::findOrFail($id);
         $disciplina->delete();
         return redirect()->route('disciplinas.index');
     }

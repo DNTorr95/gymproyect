@@ -22,7 +22,7 @@ class NotaDeVentaController extends Controller
 
    public function create()
    {
-       $productos = Producto::all();
+       $productos = producto::all();
        $productos->load('categoria');
        return view('gestionar_notaDeVenta.create', compact('productos'));
    }
@@ -30,11 +30,11 @@ class NotaDeVentaController extends Controller
    public function store(Storenota_de_ventaRequest $request)
    {
         //return dd($request->all());
-        $cliente = Cliente::where('id', $request->cliente_id)->first();
+        $cliente = cliente::where('id', $request->cliente_id)->first();
         if (is_null($cliente)) {
             return back()->withErrors(['Id del cliente no existe']);
         }
-        $productos = Producto::all(); 
+        $productos = producto::all(); 
         for ($i=1; $i <= count($productos); $i++) { 
             if ($request->filled($i)) {
                 if ($productos[$i-1]->stock < $request->$i) {

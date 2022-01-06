@@ -34,7 +34,7 @@ class PersonaController extends Controller
             $validate2 = $request->validate(['password' => 'required|string|min:4|confirmed']);
 
         }
-        $persona = new Persona($request->only([
+        $persona = new persona($request->only([
             'ci', 'nombre', 'apellido', 'url_huella', 'tel', 'email',
             'foto', 'fecha_naci', 'genero', 'tipo',
         ]));
@@ -52,13 +52,13 @@ class PersonaController extends Controller
         $persona->save();
 
         if ($request->tipo == 'I') {
-            $instructor = new Instructor();
+            $instructor = new instructor();
             $instructor->especialidad = $request->input('especialidad');
             $instructor->persona_id = $persona->id;
             $instructor->save();
         }
         if ($request->tipo == 'C') {
-            $cliente = new Cliente();
+            $cliente = new cliente();
             $cliente->edad = $request->input('edad');
             $cliente->persona_id = $persona->id;
             $cliente->save();
@@ -84,7 +84,7 @@ class PersonaController extends Controller
 
     public function edit($id)
     {
-        $persona = Persona::findOrFail($id);
+        $persona = persona::findOrFail($id);
         $persona->load('administrador');
         $persona->load('cliente');
         $persona->load('instructor');
@@ -93,23 +93,23 @@ class PersonaController extends Controller
 
     public function update(UpdatepersonaRequest $request, $id)
     {
-        $persona_ci = Persona::where('ci', $request->ci)
+        $persona_ci = persona::where('ci', $request->ci)
             ->where('id', '!=', $id)->first();
         if (!is_null($persona_ci)) {
             return back()->withErrors(['Ci ya esta registrado, intente con otro']);
         }
-        $persona_huella = Persona::where('url_huella', $request->url_huella)
+        $persona_huella = persona::where('url_huella', $request->url_huella)
             ->where('id', '!=', $id)->first();
         if (!is_null($persona_huella) && !is_null($request->url_huella)) {
             return back()->withErrors(['Huella ya esta registrado, intente con otro']);
         }
-        $persona_email = Persona::where('email', $request->email)
+        $persona_email = persona::where('email', $request->email)
             ->where('id', '!=', $id)->first();
         if (!is_null($persona_email)) {
             return back()->withErrors(['Email ya esta registrado, intente con otro']);
         }
         //actualiza la infomarcion y redirecciona
-        $persona = Persona::findOrFail($id);
+        $persona = persona::findOrFail($id);
         $personaAux = $request->only([
             'ci', 'nombre', 'apellido', 'url_huella', 'tel', 'email',
             'fecha_naci',
@@ -126,15 +126,15 @@ class PersonaController extends Controller
 
     public function destroy($id) 
     {
-        $persona = Persona::findOrFail($id);
+        $persona = persona::findOrFail($id);
         if  ($persona->tipo == 'A') {
-            $administrador = Administrador::where('persona_id', $id)->first();
+            $administrador = administrador::where('persona_id', $id)->first();
             $administrador->delete();
         } else if  ($persona->tipo == 'C') {
-            $cliente = Cliente::where('persona_id', $id)->first();
+            $cliente = cliente::where('persona_id', $id)->first();
             $cliente->delete();
         } else {
-            $instructor = Instructor::where('persona_id', $id)->first();
+            $instructor = instructor::where('persona_id', $id)->first();
             $instructor->delete();
         }
         $persona->delete();

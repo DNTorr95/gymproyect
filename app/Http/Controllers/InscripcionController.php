@@ -16,14 +16,14 @@ class InscripcionController extends Controller
 {
     public function index()
     {
-        $inscripciones = Inscripcion::all();
+        $inscripciones = inscripcion::all();
         return view('gestionar_inscripcion.index', compact('inscripciones'));
     }
 
     public function create()
     {   
-        $paquetes = Paquete::all();
-        $grupos = Grupo::all();
+        $paquetes = paquete::all();
+        $grupos = grupo::all();
         $grupos->load('disciplina');
         return view('gestionar_inscripcion.create', compact('paquetes', 'grupos'));
     }
@@ -35,16 +35,16 @@ class InscripcionController extends Controller
         } else {
             return dd($request->only('fecha_ini'));
         }*/
-        $cliente = Cliente::where('id', $request->cliente_id)->first();
+        $cliente = cliente::where('id', $request->cliente_id)->first();
         if (is_null($cliente)) {
             return back()->withErrors(['Id del cliente no existe']);
         }
-        $inscripcion = new Inscripcion($request->all());
+        $inscripcion = new inscripcion($request->all());
         $inscripcion->paquete_id = 1;
         $inscripcion->total = 0;
         $inscripcion->save();
         
-        $grupos = Grupo::all(); 
+        $grupos = grupo::all(); 
         for ($i=1; $i <= count($grupos); $i++) { 
             if ($request->filled($i)) {
                 $detalle = new detalle_inscripcion();
@@ -69,21 +69,21 @@ class InscripcionController extends Controller
     
     public function edit($id)
     {
-        $paquetes = Paquete::all();
-        $grupos = Grupo::all();
+        $paquetes = paquete::all();
+        $grupos = grupo::all();
         $grupos->load('disciplina');
-        $inscripcion = Inscripcion::findOrFail($id);
+        $inscripcion = inscripcion::findOrFail($id);
         //$cliente = Cliente::findOrFail($inscripcion->cliente_id);
         return view('gestionar_inscripcion.edit', compact('inscripcion', 'grupos', 'paquetes'));
     }
 
     public function update(UpdateinscripcionRequest $request, $id)
     {
-        $cliente = Cliente::where('id', $request->cliente_id)->first();
+        $cliente = cliente::where('id', $request->cliente_id)->first();
         if (is_null($cliente)) {
             return back()->withErrors(['Id del cliente no existe']);
         }
-        $inscripcion = Inscripcion::findOrFail($id);
+        $inscripcion = inscripcion::findOrFail($id);
         $inscripcion->update($request->all());
         $inscripcion->total = 0;
         $inscripcion->save();
@@ -91,7 +91,7 @@ class InscripcionController extends Controller
         $detalles = detalle_inscripcion::where('inscripcion_id', $inscripcion->id);
         $detalles->delete();
 
-        $grupos = Grupo::all(); 
+        $grupos = grupo::all(); 
         for ($i=1; $i <= count($grupos); $i++) { 
             if ($request->filled($i)) {
                 $detalle = new detalle_inscripcion();
@@ -108,7 +108,7 @@ class InscripcionController extends Controller
 
     public function destroy($id)
     {
-        $inscripcion = Inscripcion::findOrFail($id);
+        $inscripcion = inscripcion::findOrFail($id);
         $detalles = detalle_inscripcion::where('inscripcion_id', $inscripcion->id);
         $detalles->delete();
         $inscripcion->delete();

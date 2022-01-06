@@ -15,18 +15,18 @@ class AsistenciaController extends Controller
     
     public function index()
     {
-        $asistencias = Asistencia::all();
+        $asistencias = asistencia::all();
         $asistencias->load('persona');
         return view('gestionar_asistencia.index', compact('asistencias'));
     }
 
     public function store(StoreasistenciaRequest $request) 
     {
-        $persona = Persona::where('ci', $request->ci)->first();
+        $persona = persona::where('ci', $request->ci)->first();
         if  (is_null($persona)) {
             return back()->withErrors(['Ci no existe']);
         }
-        $asistencia = new Asistencia();
+        $asistencia = new asistencia();
         $asistencia->persona_id = $persona->id;
         $now = Carbon::now();
         //$f = $now->format('Y-m-d H:i:s A'); // si es am o pm
@@ -39,7 +39,7 @@ class AsistenciaController extends Controller
 
     public function edit($id) 
     {
-        $asistencia = Asistencia::findOrFail($id);
+        $asistencia = asistencia::findOrFail($id);
         $asistencia->load('persona');
         //$persona = Persona::findOrFail($persona_id);
         return view('gestionar_asistencia.edit', ['asistencia' => $asistencia]);
@@ -47,11 +47,11 @@ class AsistenciaController extends Controller
 
     public function update(UpdateasistenciaRequest $request , $id) 
     {
-        $persona = Persona::where('ci', $request->ci)->first();
+        $persona = persona::where('ci', $request->ci)->first();
         if  (is_null($persona)) {
             return back()->withErrors(['Ci no existe']);
         }
-        $asistencia = Asistencia::findOrFail($id);
+        $asistencia = asistencia::findOrFail($id);
         $asistencia->persona_id = $persona->id;
         $asistencia->save();
 
@@ -60,7 +60,7 @@ class AsistenciaController extends Controller
 
     public function destroy($id) 
     {
-        $asistencia = Asistencia::findOrFail($id);
+        $asistencia = asistencia::findOrFail($id);
         $asistencia->delete();
         return redirect()->route('asistencias.index');
     }
