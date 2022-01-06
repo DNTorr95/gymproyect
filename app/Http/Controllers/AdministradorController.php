@@ -17,7 +17,8 @@ class AdministradorController extends Controller
   public function index()
   {
     $personas  = persona::where('tipo', 'A')->get();
-    $personas->load('administrador');
+  /*   return $personas;
+    $personas->load('administrador'); */
     return view('gestionar_administrador.index', compact('personas'));
   }
 

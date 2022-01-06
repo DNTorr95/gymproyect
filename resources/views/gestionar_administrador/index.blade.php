@@ -54,7 +54,7 @@
                                     <tbody>
                                        {{--  @php $i = 0 @endphp --}}
                                         @foreach ($personas as $persona)
-                                        @if($persona->tipo == 'A')
+                                        {{-- @if($persona->tipo == "A") --}}
                                         <tr>                                           
                                             <td>{{$persona->id}}</td>
                                             <td>{{$persona->usuario}}</td>
@@ -90,7 +90,7 @@
                                             </td>
                                            {{--  @php $i++ @endphp --}}
                                         </tr>
-                                        @endif
+                                       {{--  @endif --}}
                                         @endforeach
                                     </tbody>
                                 </table>
