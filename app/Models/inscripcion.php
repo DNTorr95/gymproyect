@@ -23,12 +23,12 @@ class inscripcion extends Model
 
     public function paquete()
     {
-        return $this->belongsTo(Paquete::class,'paquete_id', 'id');
+        return $this->belongsTo(paquete::class,'paquete_id', 'id');
     }
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class,'cliente_id', 'id');
+        return $this->belongsTo(cliente::class,'cliente_id', 'id');
     }
 
     public function detalle_inscripcion()

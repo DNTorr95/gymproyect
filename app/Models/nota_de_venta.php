@@ -21,17 +21,17 @@ class nota_de_venta extends Model
 
     public function administrador()
     {
-        return $this->belongsTo(Administrador::class,'administrador_id', 'id');
+        return $this->belongsTo(administrador::class,'administrador_id', 'id');
     }
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class,'cliente_id', 'id');
+        return $this->belongsTo(cliente::class,'cliente_id', 'id');
     }
 
     public function detalleVenta()
     {
-        return $this->hasMany(DetalleDeVenta::class, 'nventa_id', 'id');
+        return $this->hasMany(detalle_de_venta::class, 'nventa_id', 'id');
     }
 
 }

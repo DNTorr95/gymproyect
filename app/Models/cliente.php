@@ -25,17 +25,17 @@ class cliente extends Model
 
     public function peso()
     {
-        return $this->hasMany(Control_De_Peso::class, 'cliente_id', 'id');
+        return $this->hasMany(control_de_peso::class, 'cliente_id', 'id');
     }
 
     public function inscripcion()
     {
-        return $this->hasMany(Inscripcion::class, 'inscripcion_id', 'id');
+        return $this->hasMany(inscripcion::class, 'inscripcion_id', 'id');
     }
 
     public function notaDeVenta()
     {
-        return $this->hasMany(NotaDeVenta::class, 'cliente_id', 'id');
+        return $this->hasMany(nota_de_venta::class, 'cliente_id', 'id');
     }
 
 }

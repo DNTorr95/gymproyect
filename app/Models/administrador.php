@@ -27,11 +27,11 @@ class administrador extends Authenticatable
 
     public function persona()
     {
-        return $this->belongsTo(Persona::class,'persona_id', 'id');
+        return $this->belongsTo(persona::class,'persona_id', 'id');
     }
 
     public function notaDeVenta()
     {
-        return $this->hasMany(NotaDeVenta::class, 'administrador_id', 'id');
+        return $this->hasMany(nota_de_venta::class, 'administrador_id', 'id');
     }
 }

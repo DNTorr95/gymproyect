@@ -18,6 +18,6 @@ class area extends Model
 
     public function disciplina()
     {
-        return $this->hasMany(Disciplina::class, 'area_id', 'id');
+        return $this->hasMany(disciplina::class, 'area_id', 'id');
     }
 }

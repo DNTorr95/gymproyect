@@ -18,6 +18,6 @@ class categoria extends Model
 
     public function producto()
     {
-        return $this->hasMany(Producto::class, 'categoria_id', 'id');
+        return $this->hasMany(producto::class, 'categoria_id', 'id');
     }
 }

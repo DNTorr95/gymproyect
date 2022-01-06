@@ -21,11 +21,11 @@ class producto extends Model
 
     public function categoria()
     {
-        return $this->belongsTo(Categoria::class,'categoria_id', 'id');
+        return $this->belongsTo(categoria::class,'categoria_id', 'id');
     }
 
     public function detalleVenta()
     {
-        return $this->hasMany(DetalleDeVenta::class, 'producto_id', 'id');
+        return $this->hasMany(detalle_de_venta::class, 'producto_id', 'id');
     }
 }

@@ -20,11 +20,11 @@ class detalle_de_venta extends Model
 
     public function notaDeVenta()
     {
-        return $this->belongsTo(NotaDeVenta::class,'nventa_id', 'id');
+        return $this->belongsTo(nota_de_venta::class,'nventa_id', 'id');
     }
 
     public function producto()
     {
-        return $this->belongsTo(Producto::class,'nventa_id', 'id');
+        return $this->belongsTo(producto::class,'nventa_id', 'id');
     }
 }

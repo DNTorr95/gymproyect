@@ -24,12 +24,12 @@ class grupo extends Model
 
     public function instructor()
     {
-        return $this->belongsTo(Instructor::class,'instructor_id', 'id');
+        return $this->belongsTo(instructor::class,'instructor_id', 'id');
     }
 
     public function disciplina()
     {
-        return $this->belongsTo(Disciplina::class,'disciplina_id', 'id');
+        return $this->belongsTo(disciplina::class,'disciplina_id', 'id');
     }
 
     public function detalle_inscripcion()

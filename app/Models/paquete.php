@@ -21,11 +21,11 @@ class paquete extends Model
 
     public function disciplina()
     {
-        return $this->hasMany(Disciplina::class, 'area_id', 'id');
+        return $this->hasMany(disciplina::class, 'area_id', 'id');
     }
 
     public function inscripcion()
     {
-        return $this->hasOne(Inscripcion::class, 'inscripcion_id', 'id');
+        return $this->hasOne(inscripcion::class, 'inscripcion_id', 'id');
     }
 }

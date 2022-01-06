@@ -22,17 +22,17 @@ class detalle_inscripcion extends Model
 
     public function inscripcion()
     {
-        return $this->belongsTo(Inscripcion::class,'inscripcion_id', 'id');
+        return $this->belongsTo(inscripcion::class,'inscripcion_id', 'id');
     }
 
     public function grupo()
     {
-        return $this->belongsTo(Grupo::class,'grupo_id', 'id');
+        return $this->belongsTo(grupo::class,'grupo_id', 'id');
     }
 
     public function disciplina()
     {
-        return $this->belongsTo(Disciplina::class,'disciplina_id', 'id');
+        return $this->belongsTo(disciplina::class,'disciplina_id', 'id');
     }
 
 }

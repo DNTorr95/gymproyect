@@ -22,17 +22,17 @@ class disciplina extends Model
 
     public function area()
     {
-        return $this->belongsTo(Area::class,'area_id', 'id');
+        return $this->belongsTo(area::class,'area_id', 'id');
     }
 
     public function paquete()
     {
-        return $this->belongsTo(Paquete::class,'paquete_id', 'id');
+        return $this->belongsTo(paquete::class,'paquete_id', 'id');
     }
 
     public function grupo()
     {
-        return $this->hasMany(Grupo::class, 'disciplina_id', 'id');
+        return $this->hasMany(grupo::class, 'disciplina_id', 'id');
     }
 
     public function detalle_inscripcion()

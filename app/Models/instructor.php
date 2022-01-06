@@ -20,12 +20,12 @@ class instructor extends Model
 
     public function persona()
     {
-        return $this->belongsTo(Persona::class,'persona_id', 'id');
+        return $this->belongsTo(persona::class,'persona_id', 'id');
     }
 
     public function grupo()
     {
-        return $this->hasMany(Grupo::class, 'instructor_id', 'id');
+        return $this->hasMany(grupo::class, 'instructor_id', 'id');
     }
 
 }
