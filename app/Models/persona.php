@@ -27,22 +27,22 @@ class persona extends Model
 
     public function administrador()
     {
-        return $this->hasOne(Administrador::class, 'persona_id', 'id');
+        return $this->hasOne(administrador::class, 'persona_id', 'id');
     }
 
     public function cliente()
     {
-        return $this->hasOne(Cliente::class, 'persona_id', 'id');
+        return $this->hasOne(cliente::class, 'persona_id', 'id');
     }
 
     public function instructor()
     {
-        return $this->hasOne(Instructor::class, 'persona_id', 'id');
+        return $this->hasOne(instructor::class, 'persona_id', 'id');
     }
 
     public function asistencia()
     {
-        return $this->hasMany(Asistencia::class, 'persona_id', 'id');
+        return $this->hasMany(asistencia::class, 'persona_id', 'id');
     }
 
 
