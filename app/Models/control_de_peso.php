@@ -21,6 +21,6 @@ class control_de_peso extends Model
     ]; 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class,'cliente_id', 'id');
+        return $this->belongsTo(cliente::class,'cliente_id', 'id');
     }
 }
