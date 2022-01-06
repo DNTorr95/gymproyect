@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Http\Middleware\redirec;
+
 
 class HttpsProtocol
 {
@@ -18,7 +18,8 @@ class HttpsProtocol
     public function handle(Request $request, Closure $next)
     {   
         if(!$request->secure()){ 
-            return redirec()->secure($request->getRequestUri());
+            return redirect()
+            ->secure($request->getRequestUri());
         }
         return $next($request);
     }
